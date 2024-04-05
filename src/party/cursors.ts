@@ -7,7 +7,7 @@ export default class CursorsServer implements Party.Server {
   async onClose(connection: Party.Connection<unknown>) {
     const leaveMessage = {
       type: "cursors-leave",
-      user: connection.id,
+      userId: connection.id,
     } satisfies CURSORS.LeaveMessage;
     this.room.broadcast(JSON.stringify(leaveMessage), [connection.id]);
   }
@@ -16,7 +16,8 @@ export default class CursorsServer implements Party.Server {
     const message = CURSORS.messageSchema.parse(JSON.parse(stringifiedMessage));
     switch (message.type) {
       case "cursors-move":
-        this.room.broadcast(stringifiedMessage, [sender.id]);
+        message.userId = sender.id;
+        this.room.broadcast(JSON.stringify(message), [sender.id]);
         break;
     }
   }

@@ -2,16 +2,11 @@
 
 import { PARTYKIT_HOST } from "@/env";
 import * as CURSORS from "@/party/cursors-schema";
-import { nanoid } from "nanoid";
 import usePartySocket from "partysocket/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Cursors(props: { roomId: string; userId: string }) {
   const [cursors, setCursors] = useState<CURSORS.MoveMessage[]>([]);
-  const cursorsWithId = useMemo(
-    () => cursors.map((cursor) => ({ ...cursor, id: nanoid() })),
-    [cursors],
-  );
 
   const ws = usePartySocket({
     host: PARTYKIT_HOST,
@@ -28,7 +23,7 @@ export function Cursors(props: { roomId: string; userId: string }) {
           ]);
           break;
         case "cursors-leave":
-          setCursors(cursors.filter((c) => c.user !== message.user));
+          setCursors(cursors.filter((c) => c.userId !== message.userId));
           break;
       }
     },
@@ -49,10 +44,10 @@ export function Cursors(props: { roomId: string; userId: string }) {
     return () => window.removeEventListener("mousemove", cursorMove);
   }, [ws, props.userId]);
 
-  return cursorsWithId.map((cursor) => (
+  return cursors.map((cursor) => (
     <div
-      key={cursor.id}
-      className="absolute rounded-full rounded-bl-none bg-green-700 text-white py-1 px-2"
+      key={cursor.userId}
+      className="absolute rounded-full rounded-bl-none bg-green-700 px-2 py-1 text-white"
       style={{ top: `${cursor.y}%`, left: `${cursor.x}%` }}
     >
       {cursor.user}
