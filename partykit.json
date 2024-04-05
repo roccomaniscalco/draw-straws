@@ -1,0 +1,9 @@
+{
+  "$schema": "https://www.partykit.io/schema.json",
+  "name": "draw-straws-party",
+  "main": "src/party/index.ts",
+  "parties": {
+    "drawing": "src/party/drawing.ts"
+  },
+  "compatibilityDate": "2024-04-04"
+}

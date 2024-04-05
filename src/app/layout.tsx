@@ -1,6 +1,6 @@
 import { ThemeProvider, ThemeToggle } from "@/components/theme";
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/globals.css";
 
 export const metadata: Metadata = {
   title: "Draw Straws",
