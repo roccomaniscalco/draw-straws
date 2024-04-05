@@ -18,19 +18,21 @@ export function ShareButton() {
   return (
     <Button
       onClick={async () => {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(
+          window.location.origin + window.location.pathname,
+        );
         setIsCopied(true);
       }}
     >
       {isCopied ? (
         <>
           <Check className="mr-2 h-4 w-4 animate-in zoom-in" />
-          <span className="animate-in fade-in">Link Copied</span>
+          Link Copied
         </>
       ) : (
         <>
-          <Clipboard className="mr-2 h-4 w-4 animate-in zoom-in" />
-          <span className="animate-in fade-in">Copy Shareable Link</span>
+          <Clipboard className="mr-2 h-4 w-4" />
+          Copy Shareable Link
         </>
       )}
     </Button>

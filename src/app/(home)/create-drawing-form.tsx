@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-  topic: z.string().min(1, { message: "Required field" }),
+  topic: z.string().min(1, { message: "Field is required." }),
 });
 export type CreateDrawingFormValues = z.infer<typeof formSchema>;
 
@@ -39,7 +39,7 @@ export function CreateDrawingForm(props: {
   return (
     <Card className="max-w-sm">
       <CardHeader>
-        <CardTitle>Create Drawing</CardTitle>
+        <CardTitle>Create Straw Drawing</CardTitle>
         <CardDescription>
           Can&apos;t decide who should do that unpleasant task? Draw straws to
           decide.
@@ -69,7 +69,7 @@ export function CreateDrawingForm(props: {
               )}
             />
             <Button className="w-full" type="submit">
-              Start Drawing
+              Create Drawing
             </Button>
           </form>
         </Form>
