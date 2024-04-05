@@ -3,7 +3,8 @@
   "name": "draw-straws-party",
   "main": "src/party/index.ts",
   "parties": {
-    "drawing": "src/party/drawing.ts"
+    "drawing": "src/party/drawing.ts",
+    "cursors": "src/party/cursors.ts"
   },
   "compatibilityDate": "2024-04-04"
 }
