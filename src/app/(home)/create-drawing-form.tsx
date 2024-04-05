@@ -17,36 +17,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PARTYKIT_URL } from "@/env";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
   topic: z.string().min(1),
 });
+export type CreateDrawingFormValues = z.infer<typeof formSchema>;
 
-export function ProfileForm() {
-  const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
+export function CreateDrawingForm(props: {
+  onSubmit: (values: CreateDrawingFormValues) => Promise<void>;
+}) {
+  const form = useForm<CreateDrawingFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       topic: "",
     },
   });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const drawingId = 123;
-    const res = await fetch(`${PARTYKIT_URL}/parties/drawing/${drawingId}`, {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
-    if (res.ok) {
-      // redirect to drawing page
-      router.push(`/drawing/${drawingId}`);
-    }
-  }
 
   return (
     <Card className="max-w-sm">
@@ -59,7 +47,10 @@ export function ProfileForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit((values) => props.onSubmit(values))}
+            className="space-y-8"
+          >
             <FormField
               control={form.control}
               name="topic"
@@ -82,5 +73,3 @@ export function ProfileForm() {
     </Card>
   );
 }
-
-export default function CreateRoomForm() {}
