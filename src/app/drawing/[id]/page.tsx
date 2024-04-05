@@ -1,3 +1,4 @@
+import { ShareButton } from "@/app/drawing/[id]/share-button";
 import { Drawing } from "@/app/drawing/[id]/drawing";
 import { PARTYKIT_URL } from "@/env";
 import { z } from "zod";
@@ -7,7 +8,6 @@ export default async function DrawingPage({
 }: {
   params: { id: string };
 }) {
-  console.log(params.id);
   const res = await fetch(`${PARTYKIT_URL}/parties/drawing/${params.id}`, {
     next: { revalidate: 0 },
   });
@@ -15,9 +15,10 @@ export default async function DrawingPage({
   const { topic } = resSchema.parse(await res.json());
 
   return (
-    <div>
-      <h2>{topic}</h2>
+    <>
+      <h2 className="text-2xl pb-6">{topic}</h2>
+      <ShareButton/>
       <Drawing id={params.id} />
-    </div>
+    </>
   );
 }

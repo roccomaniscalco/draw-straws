@@ -21,7 +21,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="container flex min-h-screen items-center justify-center">
+          <main className="container flex min-h-screen flex-col items-center justify-center">
             <Header />
             {children}
           </main>

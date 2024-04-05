@@ -26,10 +26,5 @@ export function Drawing(props: { id: string }) {
     },
   });
 
-  return (
-    <div>
-      <h1>Draw Straws</h1>
-      <p>Draw straws with your friends.</p>
-    </div>
-  );
+  return <div></div>;
 }

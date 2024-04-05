@@ -16,15 +16,16 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.364.0",
+    "nanoid": "^5.0.6",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
+    "partysocket": "1.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4",
-    "partysocket": "1.0.1"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -33,11 +34,11 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "partykit": "0.0.102",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5",
-    "partykit": "0.0.102"
+    "typescript": "^5"
   }
 }

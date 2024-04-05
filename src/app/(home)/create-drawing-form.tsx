@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-  topic: z.string().min(1),
+  topic: z.string().min(1, { message: "Required field" }),
 });
 export type CreateDrawingFormValues = z.infer<typeof formSchema>;
 
@@ -56,9 +56,13 @@ export function CreateDrawingForm(props: {
               name="topic"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>What do you want to decide?</FormLabel>
+                  <FormLabel>What to decide</FormLabel>
                   <FormControl>
-                    <Input placeholder="Who writes unit tests?" {...field} />
+                    <Input
+                      placeholder="Who's writing unit tests?"
+                      autoComplete="off"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
