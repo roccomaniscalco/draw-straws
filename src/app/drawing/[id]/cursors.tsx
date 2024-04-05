@@ -5,7 +5,7 @@ import * as CURSORS from "@/party/cursors-schema";
 import usePartySocket from "partysocket/react";
 import { useEffect, useState } from "react";
 
-export function Cursors(props: { roomId: string; userId: string }) {
+export function Cursors(props: { roomId: string; user: string }) {
   const [cursors, setCursors] = useState<CURSORS.MoveMessage[]>([]);
 
   const ws = usePartySocket({
@@ -33,7 +33,7 @@ export function Cursors(props: { roomId: string; userId: string }) {
     function cursorMove(e: MouseEvent) {
       const cursorMove = {
         type: "cursors-move",
-        user: props.userId,
+        user: props.user,
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100,
       } satisfies CURSORS.MoveMessage;
@@ -42,7 +42,7 @@ export function Cursors(props: { roomId: string; userId: string }) {
 
     window.addEventListener("mousemove", cursorMove);
     return () => window.removeEventListener("mousemove", cursorMove);
-  }, [ws, props.userId]);
+  }, [ws, props.user]);
 
   return cursors.map((cursor) => (
     <div

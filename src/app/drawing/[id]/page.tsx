@@ -23,8 +23,8 @@ export default async function DrawingPage({
       <h2 className="text-balance text-center text-2xl">{topic}</h2>
       {searchParams.user ? (
         <>
-          <Drawing id={params.id} />
-          <Cursors roomId={params.id} userId={searchParams.user} />
+          <Drawing id={params.id} user={searchParams.user} />
+          <Cursors roomId={params.id} user={searchParams.user} />
         </>
       ) : (
         <JoinDrawingForm />

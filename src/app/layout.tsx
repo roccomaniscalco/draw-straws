@@ -1,6 +1,7 @@
 import { ThemeProvider, ThemeToggle } from "@/components/theme";
 import type { Metadata } from "next";
 import "@/globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Draw Straws",
@@ -25,6 +26,7 @@ export default function RootLayout({
             <Header />
             {children}
           </main>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
