@@ -1,11 +1,17 @@
 "use client";
 
+import { ShareButton } from "@/app/drawing/[roomId]/share-button";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,10 +24,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-  user: z.string().min(1, { message: "Field is required" }).regex(
-    // alphanumeric characters, underscores, and hyphens
-    /^[a-zA-Z0-9_-]+$/,
-    { message: "Field may not contain special characters." }
+  user: z
+    .string()
+    .min(1, { message: "Field is required" })
+    .regex(
+      // alphanumeric characters, underscores, and hyphens
+      /^[a-zA-Z0-9_-]+$/,
+      { message: "Field may not contain special characters." },
     ),
 });
 type FormValues = z.infer<typeof formSchema>;
@@ -36,15 +45,14 @@ export function JoinDrawingForm() {
   const router = useRouter();
 
   function onSubmit(values: FormValues) {
-    const searchParams = new URLSearchParams();
-    searchParams.set("user", values.user);
-    router.replace("?" + searchParams.toString());
+    router.push(`${location.pathname}/user/${values.user}`);
   }
 
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="h-fit w-full max-w-sm">
       <CardHeader>
         <CardTitle>Join Straw Drawing</CardTitle>
+        <CardDescription>Enter your name to join!</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -57,16 +65,10 @@ export function JoinDrawingForm() {
               name="user"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Your Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Qui-Gon Jinn"
-                      {...field}
-                    />
+                    <Input placeholder="Qui-Gon Jinn" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    Your username will visible to others in the drawing.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -76,6 +78,7 @@ export function JoinDrawingForm() {
             </Button>
           </form>
         </Form>
+        <ShareButton />
       </CardContent>
     </Card>
   );

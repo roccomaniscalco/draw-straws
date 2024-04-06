@@ -6,12 +6,12 @@ import * as DRAWING from "@/party/drawing-schema";
 import { toast } from "sonner";
 import { UserMinus, UserPlus } from "lucide-react";
 
-export function Drawing(props: { id: string; user: string }) {
+export function Drawing(props: { roomId: string; user: string }) {
   const ws = usePartySocket({
     // usePartySocket takes the same arguments as PartySocket.
     host: PARTYKIT_HOST, // or localhost:1999 in dev
     party: "drawing",
-    room: props.id,
+    room: props.roomId,
     query: { user: props.user },
 
     // in addition, you can provide socket lifecycle event handlers

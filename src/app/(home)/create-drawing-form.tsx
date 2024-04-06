@@ -37,7 +37,7 @@ export function CreateDrawingForm(props: {
   });
 
   return (
-    <Card className="max-w-sm">
+    <Card className="max-w-sm w-full">
       <CardHeader>
         <CardTitle>Create Straw Drawing</CardTitle>
         <CardDescription>
@@ -59,7 +59,7 @@ export function CreateDrawingForm(props: {
                   <FormLabel>What to decide</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Who's writing unit tests?"
+                      placeholder="Who's writing those unit tests?"
                       autoComplete="off"
                       {...field}
                     />

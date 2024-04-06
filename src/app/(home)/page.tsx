@@ -19,5 +19,9 @@ export default function HomePage() {
     }
   }
 
-  return <CreateDrawingForm onSubmit={createDrawing} />;
+  return (
+    <div className="container flex w-full h-screen items-center justify-center">
+      <CreateDrawingForm onSubmit={createDrawing} />
+    </div>
+  );
 }

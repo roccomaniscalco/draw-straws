@@ -22,10 +22,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="container flex min-h-screen flex-col items-center justify-center">
-            <Header />
-            {children}
-          </main>
+          <Header />
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>
@@ -35,8 +33,7 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <header className="container absolute top-0 flex items-center justify-between py-4">
-      <h1 className="text-2xl">Draw Straws</h1>
+    <header className="fixed top-4 right-4">
       <ThemeToggle />
     </header>
   );

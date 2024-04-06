@@ -17,6 +17,8 @@ export function ShareButton() {
 
   return (
     <Button
+      className="w-full mt-6"
+      variant="secondary"
       onClick={async () => {
         await navigator.clipboard.writeText(
           window.location.origin + window.location.pathname,
